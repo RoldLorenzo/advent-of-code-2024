@@ -9,6 +9,10 @@ def get_filename() -> str:
         
     return sys.argv[1]
 
+def file_as_string() -> str:
+    with open(get_filename(), 'r') as input:
+        return input.read()
+
 def file_lines() -> list[str]:
     with open(get_filename(), 'r') as input:
         return [line.rstrip('\n') for line in input]
