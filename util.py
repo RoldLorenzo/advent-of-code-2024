@@ -1,5 +1,7 @@
 import sys
 
+# https://adventofcode.com/2024
+
 def get_filename() -> str:
     if len(sys.argv) <= 1:
         print("Usage: <script.py> <input file name>")
