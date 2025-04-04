@@ -2,7 +2,7 @@ from util import *
 from collections import Counter
 
 if __name__ == "__main__":
-    pairs = list(map(lambda l: l.split(), file_lines()))
+    pairs = [line.split() for line in file_lines()]
     
     first_list = sorted(map(lambda p: int(p[0]), pairs))
     second_list = sorted(map(lambda p: int(p[1]), pairs))
