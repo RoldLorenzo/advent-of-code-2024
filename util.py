@@ -16,7 +16,7 @@ def file_as_string() -> str:
 
 def file_lines() -> list[str]:
     with open(get_filename(), 'r') as input:
-        return [line.rstrip('\n') for line in input]
+        return input.read().strip().splitlines()
 
 def get_matrix_element(matrix: list[str], i: int, j: int) -> Optional[str]:
     if 0 <= i < len(matrix) and 0 <= j < len(matrix[0]):
