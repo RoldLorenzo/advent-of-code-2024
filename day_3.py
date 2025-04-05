@@ -29,7 +29,9 @@ class InstructParser:
                 self.advance()
         
         return total
-                
+    
+    # With 'mul' already consumed, expect '(<number>,<number>)' and return the 2 number multiplied.
+    # If the arguments are not correctly formated, or if self.active is false, return 0.  
     def parse_mul(self) -> int:
         if not self.active:
             return 0
@@ -49,6 +51,8 @@ class InstructParser:
 
         return num1 * num2
     
+    # With 'do' or 'don't' already consumed, expect '()'.
+    # If '()' gets consumed, set self.active to value.
     def set_active(self, value: bool):
         if not self.match("()"):
             return
@@ -65,14 +69,16 @@ class InstructParser:
     def advance(self):
         self.position += 1
         return self.input[self.position - 1]
-            
-    def match(self, esperado: str) -> bool:
-        if self.is_at_end() or self.peek(len(esperado)) != esperado:
+    
+     # Consumes the next chars if they are equal to expected
+    def match(self, expected: str) -> bool:
+        if self.is_at_end() or self.peek(len(expected)) != expected:
             return False
         
-        self.position += len(esperado)
+        self.position += len(expected)
         return True
-        
+    
+    # Returns the next n chars without consuming them
     def peek(self, n: int) -> str:
         if self.is_at_end(): return ""
         return self.input[self.position : self.position + n]
