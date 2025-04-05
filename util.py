@@ -12,7 +12,7 @@ def get_filename() -> str:
 
 def file_as_string() -> str:
     with open(get_filename(), 'r') as input:
-        return input.read()
+        return input.read().strip()
 
 def file_lines() -> list[str]:
     with open(get_filename(), 'r') as input:
