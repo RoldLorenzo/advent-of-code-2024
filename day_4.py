@@ -1,5 +1,4 @@
 from util import *
-from typing import Optional
 
 directions = [
     (0, -1),

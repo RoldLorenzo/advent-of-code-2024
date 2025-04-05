@@ -1,4 +1,5 @@
 import sys
+from typing import Optional
 
 # https://adventofcode.com/2024
 
