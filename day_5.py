@@ -39,7 +39,7 @@ def reorder_page(page: list[str], rules: Rules):
             
             if not swapped: break
                 
-def reorder_incorrect_pages(pages, rules):
+def reorder_incorrect_pages(pages: list[list[str]], rules: Rules) -> list[list[str]]:
     incorrect_pages = [page for page in pages if not page_follows_rules(page, rules)]
     
     for page in incorrect_pages:
