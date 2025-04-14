@@ -1,14 +1,21 @@
 import sys
+import os
 from typing import Optional
 
 # https://adventofcode.com/2024
 
 def get_filename() -> str:
-    if len(sys.argv) <= 1:
-        print("Usage: <script.py> <input file name>")
+    if len(sys.argv) > 1:
+        input_file = sys.argv[1]
+    else:
+        day_number = os.path.basename(sys.argv[0]).removeprefix("day_").removesuffix(".py")
+        input_file = f"input{day_number}.txt"
+
+    if not os.path.exists(input_file):
+        print("I was unable to find an input file")
         sys.exit(1)
-        
-    return sys.argv[1]
+    
+    return input_file
 
 def file_as_string() -> str:
     with open(get_filename(), 'r') as input:
