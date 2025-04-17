@@ -14,7 +14,7 @@ type Operator = Callable[[int, int], int]
 def concat_int(a: int, b: int) -> int:
     return int(str(a) + str(b))
 
-def evaluate(equation: Equation, operators: list[Operator]) -> int:
+def evaluate(equation: Equation, operators: tuple[Operator, ...]) -> int:
     result = equation.terms[0]
     
     for i, op in enumerate(operators):
