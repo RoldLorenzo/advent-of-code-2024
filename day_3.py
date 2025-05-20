@@ -1,15 +1,20 @@
 from util import *
 import re
 
+def parse_mul(match: re.Match) -> int:
+    group_1 = match.group(1)
+    group_2 = match.group(2)
+    
+    assert group_1 and group_2
+    
+    return int(group_1) * int(group_2)
+
 def parse_only_muls(input: str) -> int:
     pattern = r"mul\((-?\d+),(-?\d+)\)"
     result = 0
     
     for match in re.finditer(pattern, input):
-        n1 = match.group(1)
-        n2 = match.group(2)
-        if n1 and n2:
-            result += int(n1) * int(n2)
+        result += parse_mul(match)
             
     return result
 
@@ -33,10 +38,8 @@ def parse_instructions(input: str) -> int:
             active = False
             continue
         
-        group_1 = match.group(1)
-        group_2 = match.group(2)
-        if group_1 and group_2 and active:
-            result += int(group_1) * int(group_2)
+        if active:
+            result += parse_mul(match)
             
     return result
 
