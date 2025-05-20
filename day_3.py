@@ -24,14 +24,18 @@ def parse_instructions(input: str) -> int:
     
     for match in re.finditer(pattern, input, flags=re.VERBOSE):
         full_match = match.group(0)
-        group_1 = match.group(1)
-        group_2 = match.group(2)
         
         if full_match == "do()":
             active = True
-        elif full_match == "don't()":
+            continue
+        
+        if full_match == "don't()":
             active = False
-        elif group_1 and group_2 and active:
+            continue
+        
+        group_1 = match.group(1)
+        group_2 = match.group(2)
+        if group_1 and group_2 and active:
             result += int(group_1) * int(group_2)
             
     return result
