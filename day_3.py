@@ -3,12 +3,7 @@ import re
 
 def parse_only_muls(input: str) -> int:
     pattern = r"mul\((-?\d+),(-?\d+)\)"
-    result = 0
-    
-    for match in re.finditer(pattern, input):
-        result += int(match.group(1)) * int(match.group(2))
-            
-    return result
+    return sum(int(match.group(1)) * int(match.group(2)) for match in re.finditer(pattern, input))
 
 def parse_instructions(input: str) -> int:
     active = True
